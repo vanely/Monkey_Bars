@@ -1,15 +1,16 @@
 import javax.sound.midi.*;
 import javax.swing.*;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Music {
 
-    public static final int INSTRUMENT = 69;
+//    public static final int INSTRUMENT = 69;
 
 
-    public static void main(String[] args) throws InvalidMidiDataException {
-
+    public static void main(String[] args) {
+/*
         Synthesizer synth = null;
         try {
             synth = MidiSystem.getSynthesizer();
@@ -33,6 +34,7 @@ public class Music {
         ShortMessage sm = new ShortMessage( );
         sm.setMessage(ShortMessage.PROGRAM_CHANGE, 9, INSTRUMENT, 0); //9 ==> is the channel 10.
         track.add(new MidiEvent(sm, 0));
+*/
 
 
         Scanner input = new Scanner(System.in);
@@ -40,15 +42,16 @@ public class Music {
         System.out.print("Please enter a midi note number: ");
         int midiNoteNumber = input.nextInt();
 
-        Pitch pitch = Pitch.C;
-        System.out.println(Pitch.valueOf("Cs"));
+//        Pitch pitch = Pitch.C;
+//        System.out.println(Pitch.valueOf("Cs"));
 
-        channel.noteOn(midiNoteNumber, 127);
+//        channel.noteOn(midiNoteNumber, 127);
 
-        System.out.printf("Major: %s\n", Theory.getMajorScale(midiNoteNumber));
-        System.out.printf("Natural Minor: %s", Theory.getNaturalMinorScale(midiNoteNumber));
+        Map<String, int[]> scales = Theory.getScales();
 
-
+        for (String s: scales.keySet()) {
+            System.out.printf("%s: %s\n", s, Theory.getScale(midiNoteNumber, s));
+        }
     }
 
     public static void play(MidiChannel channel, Note note) {
