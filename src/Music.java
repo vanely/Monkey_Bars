@@ -44,8 +44,9 @@ public class Music {
         System.out.println(Pitch.valueOf("Cs"));
 
         channel.noteOn(midiNoteNumber, 127);
-        List<Note> test = Theory.getMajorScale(midiNoteNumber);
-        System.out.println(test);
+
+        System.out.printf("Major: %s\n", Theory.getMajorScale(midiNoteNumber));
+        System.out.printf("Natural Minor: %s", Theory.getNaturalMinorScale(midiNoteNumber));
 
 
     }
