@@ -7,18 +7,34 @@ import static java.util.Map.entry;
 public class Theory {
     private static final Map<String, int[]> scales = Map.ofEntries(
             entry("Major",          new int[]{ 0, 2, 4, 5, 7, 9, 11, 12}),
-            entry("NaturalMinor",   new int[]{ 0, 2, 3, 5, 7, 8, 10, 12}),
-            entry("HarmonicMinor",  new int[]{ 0, 2, 3, 5, 7, 8, 11, 12}),
-            entry("MelodicMinor",  new int[]{ 0, 2, 3, 5, 7, 9, 11, 12})
+            entry("Natural Minor",   new int[]{ 0, 2, 3, 5, 7, 8, 10, 12}),
+            entry("Harmonic Minor",  new int[]{ 0, 2, 3, 5, 7, 8, 11, 12}),
+            entry("Melodic Minor",  new int[]{ 0, 2, 3, 5, 7, 9, 11, 12})
     );
 
     private static final Map<String, String> scalesSpacing = Map.ofEntries(
             entry("Major",          "RWWHWWWH"),
-            entry("NaturalMinor",   "RWHWWHWW"),
-            entry("HarmonicMinor",  "RWHWWH3H"),
-            entry("MelodicMinor",   "RWHWWWWH")
+            entry("Natural Minor",   "RWHWWHWW"),
+            entry("Harmonic Minor",  "RWHWWH3H"),
+            entry("Melodic Minor",   "RWHWWWWH")
 
     );
+
+    public static Map<String, int[]> getScales() {
+        return scales;
+    }
+
+    public static Scale getScale(int midiNoteNumber, String scaleName) {
+        Scale scale = new Scale();
+
+        int[] spacing = scales.get(scaleName);
+
+        for (int i = 0; i < spacing.length; i++) {
+            scale.add(new Note(midiNoteNumber+spacing[i]));
+        }
+
+        return scale;
+    }
 
     public static Scale getMajorScale(int midiNoteNumber) {
         Scale majorScale = new Scale();
@@ -43,6 +59,7 @@ public class Theory {
 
         return naturalMinorScale;
     }
+
     // TODO: create this method that will turn the scale generate into a scale with proper musical spelling.
     /*
     public static Scale normalizeScale(Scale original) {
