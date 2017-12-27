@@ -23,14 +23,14 @@ public class Music {
     public static final String CRESCENDO = String.valueOf(Character.toChars(0x1D192));
 
 
-
-
-    public static final String FLAT = String.valueOf(Character.toChars(0x266D));
     public static final String SHARP = String.valueOf(Character.toChars(0x266F));
+    public static final String FLAT = String.valueOf(Character.toChars(0x266D));
     public static final String NATURAL = String.valueOf(Character.toChars(0x266E));
     public static final String DOUBLE_FLAT = String.valueOf(Character.toChars(0x1D12B));
     public static final String DOUBLE_SHARP = String.valueOf(Character.toChars(0x1D12A));
 
+//    public static final String DOUBLE_FLAT = String.format("%s%s", FLAT, FLAT);
+//    public static final String DOUBLE_SHARP = String.format("%s%s", SHARP, SHARP);
 
 
     public static void main(String[] args) {

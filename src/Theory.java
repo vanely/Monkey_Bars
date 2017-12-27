@@ -95,6 +95,7 @@ public class Theory {
             if (note.startsWith(base))
                 return new Note(midiNoteNumber,note);
         }
+        
         return null;
     }
 

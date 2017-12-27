@@ -1,50 +1,50 @@
 public enum Pitch {
     C(0, "C"),
     Bs(0, String.format("B%s", Music.SHARP)),
-    Dbb(0, String.format("D%s%s", Music.FLAT, Music.FLAT)),
+    Dbb(0, String.format("D%s", Music.DOUBLE_FLAT)),
 
     Cs(1, String.format("C%s", Music.SHARP)),
     Db(1, String.format("D%s", Music.FLAT)),
-    Bss(1, String.format("B%s%s", Music.SHARP, Music.SHARP)),
+    Bss(1, String.format("B%s", Music.DOUBLE_SHARP)),
 
     D(2, "D"),
-    Css(2, String.format("C%s%s", Music.SHARP, Music.SHARP)),
-    Ebb(2, String.format("E%s%s", Music.FLAT, Music.FLAT)),
+    Css(2, String.format("C%s", Music.DOUBLE_SHARP)),
+    Ebb(2, String.format("E%s", Music.DOUBLE_FLAT)),
 
     Ds(3, String.format("D%s", Music.SHARP)),
     Eb(3, String.format("E%s", Music.FLAT)),
-    Fbb(3, String.format("F%s%s", Music.FLAT, Music.FLAT)),
+    Fbb(3, String.format("F%s", Music.DOUBLE_FLAT)),
 
     E(4, "E"),
     Fb(4, String.format("F%s", Music.FLAT)),
-    Dss(4, String.format("D%s%s", Music.SHARP, Music.SHARP)),
+    Dss(4, String.format("D%s", Music.DOUBLE_SHARP)),
 
     F(5, "F"),
     Es(5, String.format("E%s", Music.SHARP)),
-    Gbb(5, String.format("G%s%s", Music.FLAT, Music.FLAT)),
+    Gbb(5, String.format("G%s", Music.DOUBLE_FLAT)),
 
     Fs(6, String.format("F%s", Music.SHARP)),
     Gb(6, String.format("G%s", Music.FLAT)),
-    Ess(6, String.format("E%s%s", Music.SHARP, Music.SHARP)),
+    Ess(6, String.format("E%s", Music.DOUBLE_SHARP)),
 
     G(7, "G"),
-    Fss(7, String.format("F%s%s", Music.SHARP, Music.SHARP)),
-    Abb(7, String.format("A%s%s", Music.FLAT, Music.FLAT)),
+    Fss(7, String.format("F%s", Music.DOUBLE_SHARP)),
+    Abb(7, String.format("A%s", Music.DOUBLE_FLAT)),
 
     Gs(8, String.format("G%s", Music.SHARP)),
     Ab(8, String.format("A%s", Music.FLAT)),
 
     A(9, "A"),
-    Gss(9, String.format("G%s%s", Music.SHARP, Music.SHARP)),
-    Bbb(9, String.format("B%s%s", Music.FLAT, Music.FLAT)),
+    Gss(9, String.format("G%s", Music.DOUBLE_SHARP)),
+    Bbb(9, String.format("B%s", Music.DOUBLE_FLAT)),
 
     As(10, String.format("A%s", Music.SHARP)),
     Bb(10, String.format("B%s", Music.FLAT)),
-    Cbb(10, String.format("C%s%s", Music.FLAT, Music.FLAT)),
+    Cbb(10, String.format("C%s", Music.DOUBLE_FLAT)),
 
     B(11, "B"),
     Cb(11, String.format("C%s", Music.FLAT)),
-    Ass(11, String.format("A%s%s", Music.SHARP, Music.SHARP)),
+    Ass(11, String.format("A%s", Music.DOUBLE_SHARP)),
 
     PITCH_INVALID(-1,"");
 
