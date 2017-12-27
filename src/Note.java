@@ -29,7 +29,7 @@ public class Note {
 
     @Override
     public String toString() {
-        return getNoteNameWithoutOctave();
+        return getNoteNameWithOctave();
     }
 
     public static int defaultOctave(Pitch p) {

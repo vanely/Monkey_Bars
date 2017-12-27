@@ -46,7 +46,7 @@ public enum Pitch {
     Cb(11, String.format("C%s", Music.FLAT)),
     Ass(11, String.format("A%s", Music.DOUBLE_SHARP)),
 
-    PITCH_INVALID(-1,"");
+    PITCH_INVALID(-1, "");
 
     public int getBaseMidiNumber() {
         return baseMidiNumber;
@@ -70,12 +70,12 @@ public enum Pitch {
     public static boolean pitchStringIsValid(String pitch) {
         if (pitch.length() > 3)
             return false;
-        pitch = pitch.replace('#','s');
+        pitch = pitch.replace('#', 's');
         String first = pitch.toUpperCase();
 
         if (first.startsWith("A") || first.startsWith("B") || first.startsWith("C") || first.startsWith("D") ||
-                first.startsWith("E") || first.startsWith("F") || first.startsWith("G")){
-            pitch = pitch.substring(1,pitch.length());
+                first.startsWith("E") || first.startsWith("F") || first.startsWith("G")) {
+            pitch = pitch.substring(1, pitch.length());
 
             return pitch.equals("") || pitch.equals("s") || pitch.equals("b") || pitch.equals("ss") || pitch.equals("bb");
         }
@@ -83,8 +83,8 @@ public enum Pitch {
     }
 
     public static Pitch pitchFromString(String pitch) {
-        pitch = pitch.substring(0,1).toUpperCase() + pitch.substring(1, pitch.length());
-        pitch = pitch.replace('#','s');
+        pitch = pitch.substring(0, 1).toUpperCase() + pitch.substring(1, pitch.length());
+        pitch = pitch.replace('#', 's');
 
         switch (pitch) {
             case "C":

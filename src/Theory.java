@@ -50,7 +50,6 @@ public class Theory {
     }
 
 
-
     public static String[] getOctaveBaseList(String base) {
         //A =65, G = 71
         int asciiCode = base.charAt(0);
@@ -58,13 +57,14 @@ public class Theory {
         String baseList[] = new String[8];
 
         for (int i = asciiCode; i < asciiCode + baseList.length; i++) {
-            Character character = (char) (65 + ((i-65) %7));
-            baseList[i-asciiCode] = character.toString();
+            Character character = (char) (65 + ((i - 65) % 7));
+            baseList[i - asciiCode] = character.toString();
         }
 
         return baseList;
     }
-    public static Scale getScale(Note note, String scaleName){
+
+    public static Scale getScale(Note note, String scaleName) {
         return null;
     }
 
@@ -79,10 +79,9 @@ public class Theory {
         int[] spacing = scalesList.get(scaleName);
         String[] baseList = getOctaveBaseList(getBase(root));
 
-
         int baseMidiNoteNumber = Pitch.pitchFromString(root).getBaseMidiNumber();
         for (int i = 0; i < spacing.length; i++) {
-            scale.add(getBaseEquivalent(baseMidiNoteNumber+spacing[i],baseList[i]));
+            scale.add(getBaseEquivalent(baseMidiNoteNumber + spacing[i], baseList[i]));
         }
 
         return scale;
@@ -91,11 +90,11 @@ public class Theory {
     public static Note getBaseEquivalent(int midiNoteNumber, String base) {
         List<String> eqList = equivalents.get(midiNoteNumber % 12);
 
-        for (String note: eqList) {
+        for (String note : eqList) {
             if (note.startsWith(base))
-                return new Note(midiNoteNumber,note);
+                return new Note(midiNoteNumber, note);
         }
-        
+
         return null;
     }
 

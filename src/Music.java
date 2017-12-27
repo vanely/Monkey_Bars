@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Music {
 
-//    public static final int INSTRUMENT = 69;
+    //    public static final int INSTRUMENT = 69;
     public static final String QUARTER_NOTE = String.valueOf(Character.toChars(0x2669));
     public static final String QUARTER_NOTE2 = String.valueOf(Character.toChars(0x1D15F));
 
@@ -79,7 +79,7 @@ public class Music {
 
         System.out.println("LEFT_REPEAT = " + LEFT_REPEAT);
         System.out.println("RIGHT_REPEAT = " + RIGHT_REPEAT);
-        
+
         System.out.println("FERMATA = " + FERMATA);
         System.out.println("CRESCENDO = " + CRESCENDO);
 
@@ -90,15 +90,27 @@ public class Music {
         do {
             System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
             response = input.next();
-            if (!response.equals("Q"))
-                System.out.println(Pitch.pitchStringIsValid(response));
+            if (!response.equals("Q")) {
+                if (Pitch.pitchStringIsValid(response))
+                    System.out.printf("Pitch entered is valid and recognized as %s!\n\n", Pitch.pitchFromString(response));
+                else {
+                    System.out.println("Pitch entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ##!");
+                    System.out.println("e.g. Ab, C#, Fbb, D##, C");
+                }
+            }
         } while (!response.equals("Q"));
 
         do {
             System.out.print("Please enter a note to validate, or type 'Q' to quit: ");
             response = input.next();
-            if (!response.equals("Q"))
-                System.out.println(Note.hasValidName(response));
+            if (!response.equals("Q")) {
+                if (Note.hasValidName(response))
+                    System.out.printf("Note entered is valid and recognized as %s!\n\n", new Note(response));
+                else {
+                    System.out.println("Note entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ## and a number if desired!");
+                    System.out.println("e.g. Ab3, C#5, Fbb8, D##2, C, G9");
+                }
+            }
         } while (!response.equals("Q"));
 /*
 
@@ -113,18 +125,22 @@ public class Music {
 
 //        channel.noteOn(midiNoteNumber, 127);
 
-        do {
-            System.out.print("Please enter a pitch to generate scales for: ");
-            response = input.next();
-            if (!Pitch.pitchStringIsValid(response))
-                System.out.println("Invalid pitch, asshole... Please enter a valid pitch (e.g. C#, A, Db, etc.)");
-        } while (!Pitch.pitchStringIsValid(response));
-
         Map<String, int[]> scales = Theory.createScalesList();
 
-        for (String s: scales.keySet()) {
-            System.out.printf("%s: %s\n", s, Theory.getScale(response, s));
-        }
+        do {
+            System.out.print("Please enter a pitch to generate scales for, or type 'Q' to quit: ");
+            response = input.next();
+            if (!Pitch.pitchStringIsValid(response))
+                System.out.println("Invalid pitch, asshole... Please enter a valid pitch (e.g. C#, A, Db, etc.)\n");
+            else {
+                for (String s : scales.keySet()) {
+                    System.out.printf("%s: %s\n", s, Theory.getScale(response, s));
+                }
+                System.out.println();
+            }
+        } while (!response.equals("Q"));
+
+
     }
 
     public static void play(MidiChannel channel, Note note) {

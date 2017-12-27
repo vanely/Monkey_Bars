@@ -10,16 +10,25 @@ public class Scale extends ArrayList<Note> {
         this.addAll(l);
     }
 
-    public String printWithOctaves() {
+
+    public String printWithOctaves(boolean withOctaves) {
         StringBuilder string = new StringBuilder("[");
         for (int i = 0; i < this.size(); i++) {
-            if (i != size())
-                string.append(String.format("%s ", this.get(i).getNoteNameWithOctave()));
+            String noteName = String.format("%s",
+                    withOctaves ? this.get(i).getNoteNameWithOctave() : this.get(i).getNoteNameWithoutOctave());
+            if (i != size() - 1)
+                string.append(String.format("%s ", noteName));
             else
-                string.append(this.get(i).getNoteNameWithOctave());
+                string.append(noteName);
         }
         string.append("]");
 
         return string.toString();
+    }
+
+
+    @Override
+    public String toString() {
+        return this.printWithOctaves(false);
     }
 }
