@@ -98,26 +98,58 @@ public class Theory {
         return null;
     }
 
-    public static String getFlatEquivalent(int midiNoteNumber, String base) {
+    public static Note getSingleFlatEquivalent(int midiNoteNumber) {
         List<String> equivalent = equivalents.get(midiNoteNumber % 12);
 
+        Note eq = null;
         for (String s : equivalent) {
-            if (!s.contains("#") && s.startsWith(base))
-                return s;
+            if (!s.contains("#") && !s.contains("bb"))
+                eq= new Note(midiNoteNumber, s);
         }
 
-        return "";
+        return eq;
     }
 
-    public static String getSharpEquivalent(int midiNoteNumber, String base) {
+    public static Note getFlatishEquivalent(int midiNoteNumber) {
         List<String> equivalent = equivalents.get(midiNoteNumber % 12);
 
         for (String s : equivalent) {
-            if (!s.contains("b") && s.startsWith(base))
-                return s;
+            if (!s.contains("#"))
+                return new Note(midiNoteNumber, s);
         }
 
-        return "";
+        return null;
+    }
+
+    public static Note getSingleSharpEquivalent(int midiNoteNumber) {
+        List<String> equivalent = equivalents.get(midiNoteNumber % 12);
+
+        for (String s : equivalent) {
+            if (!s.contains("b") && !s.contains("##"))
+                return new Note(midiNoteNumber, s);
+        }
+
+        return null;
+    }
+
+    public static Note getSharpishEquivalent(int midiNoteNumber) {
+        List<String> equivalent = equivalents.get(midiNoteNumber % 12);
+
+        for (String s : equivalent) {
+            if (!s.contains("b"))
+                return new Note(midiNoteNumber, s);
+        }
+
+        return null;
+    }
+
+    public static String getCircleLabel(int midiNoteNumber) {
+        if (Math.abs(12/2-midiNoteNumber/7) <= 1)
+            return String.format("%s/%s", getSingleSharpEquivalent(midiNoteNumber), getSingleFlatEquivalent(midiNoteNumber));
+        else if (12/2-midiNoteNumber/7 < 0)
+            return String.format("%s", getSingleFlatEquivalent(midiNoteNumber));
+        else
+            return String.format("%s", getSingleSharpEquivalent(midiNoteNumber));
     }
 
     public static Scale getMajorScale(int midiNoteNumber) {
