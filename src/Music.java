@@ -59,7 +59,7 @@ public class Music {
         sm.setMessage(ShortMessage.PROGRAM_CHANGE, 9, INSTRUMENT, 0); //9 ==> is the channel 10.
         track.add(new MidiEvent(sm, 0));
 */
-
+/*
         System.out.println("FLAT = " + FLAT);
         System.out.println("SHARP = " + SHARP);
         System.out.println("NATURAL = " + NATURAL);
@@ -84,8 +84,16 @@ public class Music {
         System.out.println("CRESCENDO = " + CRESCENDO);
 
         System.out.println("QUARTER_NOTE2 = " + QUARTER_NOTE2);
+
+*/
         Scanner input = new Scanner(System.in);
 
+        System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
+        int cof = input.nextInt();
+
+        for (int i = 0; i < 12; i++) {
+            System.out.println(Theory.getCircleLabel(7*i));
+        }
         String response;
         do {
             System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
