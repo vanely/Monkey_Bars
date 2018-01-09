@@ -87,6 +87,22 @@ public class Music {
 
 */
         Scanner input = new Scanner(System.in);
+        String response;
+        int decimal;
+
+
+        do {
+            System.out.print("Please enter an integer between 1 and 3,999,999 (without the commas), or type '0' to" +
+                    " move on to the next test: ");
+            decimal = input.nextInt();
+            if (decimal != 0) {
+                if (decimal >= 1 && decimal <= 3999999)
+                    System.out.println(Theory.getRomanNumeral(decimal));
+                else {
+                    System.out.println("Learn to read, dickweed.  Try again!");
+                }
+            }
+        } while (decimal != 0);
 
         System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
         int cof = input.nextInt();
@@ -94,7 +110,7 @@ public class Music {
         for (int i = 0; i < 12; i++) {
             System.out.println(Theory.getCircleLabel(7*i));
         }
-        String response;
+
         do {
             System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
             response = input.next();
