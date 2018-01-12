@@ -1,3 +1,5 @@
+package music;
+
 import java.util.Scanner;
 
 
@@ -11,7 +13,7 @@ public class Note {
         if (Pitch.pitchStringIsValid(pitch))
             this.pitch = Pitch.pitchFromString(pitch);
         else
-            System.out.println("Pitch used to create note is invalid!");
+            System.out.println("music.Pitch used to create note is invalid!");
         this.octave = midiNoteNumber / 12 - 1;
 
     }

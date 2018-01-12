@@ -1,3 +1,5 @@
+package music;
+
 public enum Pitch {
     C(0, "C"),
     Bs(0, String.format("B%s", Music.SHARP)),
