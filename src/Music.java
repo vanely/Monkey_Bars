@@ -59,7 +59,7 @@ public class Music {
         sm.setMessage(ShortMessage.PROGRAM_CHANGE, 9, INSTRUMENT, 0); //9 ==> is the channel 10.
         track.add(new MidiEvent(sm, 0));
 */
-
+/*
         System.out.println("FLAT = " + FLAT);
         System.out.println("SHARP = " + SHARP);
         System.out.println("NATURAL = " + NATURAL);
@@ -84,9 +84,33 @@ public class Music {
         System.out.println("CRESCENDO = " + CRESCENDO);
 
         System.out.println("QUARTER_NOTE2 = " + QUARTER_NOTE2);
-        Scanner input = new Scanner(System.in);
 
+*/
+        Scanner input = new Scanner(System.in);
         String response;
+        int decimal;
+
+
+        do {
+            System.out.print("Please enter an integer between 1 and 3,999,999 (without the commas), or type '0' to" +
+                    " move on to the next test: ");
+            decimal = input.nextInt();
+            if (decimal != 0) {
+                if (decimal >= 1 && decimal <= 3999999)
+                    System.out.println(Theory.getRomanNumeral(decimal));
+                else {
+                    System.out.println("Learn to read, dickweed.  Try again!");
+                }
+            }
+        } while (decimal != 0);
+
+        System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
+        int cof = input.nextInt();
+
+        for (int i = 0; i < 12; i++) {
+            System.out.println(Theory.getCircleLabel(7*i));
+        }
+
         do {
             System.out.print("Please enter a pitch to validate, or type 'Q' to quit: ");
             response = input.next();

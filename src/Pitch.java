@@ -48,13 +48,12 @@ public enum Pitch {
 
     PITCH_INVALID(-1, "");
 
-    public int getBaseMidiNumber() {
-        return baseMidiNumber;
-    }
-
     private final int baseMidiNumber;
     private final String name;
 
+    public int getBaseMidiNumber() {
+        return baseMidiNumber;
+    }
 
     Pitch(int baseMidiNumber, String name) {
         this.baseMidiNumber = baseMidiNumber;

@@ -49,6 +49,41 @@ public class Theory {
         return scalesSpacingList;
     }
 
+    public static LinkedHashMap<String, Integer> createModesList() {
+        LinkedHashMap<String, Integer> scalesList = new LinkedHashMap<>();
+
+
+        scalesList.put("Ionian", 1);
+        scalesList.put("Dorian", 2);
+        scalesList.put("Phrygian", 3);
+        scalesList.put("Lydian", 4);
+        scalesList.put("Mixolydian", 5);
+        scalesList.put("Aeolian", 6);
+        scalesList.put("Locrian", 7);
+
+        return scalesList;
+    }
+
+    public static String getRomanNumeral(int number) {
+        StringBuilder romanNumeral = new StringBuilder();
+//        , "\u203E"+"X"
+        String[] roman = {"I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M", "M\u0305V", "\u0305V",
+                "M\u0305X", "\u0305X", "\u0305X\u0305L", "\u0305L", "\u0305X\u0305C", "\u0305C", "\u0305C\u0305D",
+                "\u0305D", "\u0305C\u0305M", "\u0305M"};
+        int[] decimal = {1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000, 4000, 5000, 9000, 10000, 40000, 50000,
+                90000, 100000, 400000, 500000, 900000, 1000000};
+        int i = roman.length - 1;
+        while (number > 0) {
+            if (decimal[i] <= number) {
+                romanNumeral.append(roman[i]);
+                number -= decimal[i];
+            } else {
+                i--;
+            }
+
+        }
+        return romanNumeral.toString();
+    }
 
     public static String[] getOctaveBaseList(String base) {
         //A =65, G = 71
@@ -98,26 +133,58 @@ public class Theory {
         return null;
     }
 
-    public static String getFlatEquivalent(int midiNoteNumber, String base) {
+    public static Note getSingleFlatEquivalent(int midiNoteNumber) {
         List<String> equivalent = equivalents.get(midiNoteNumber % 12);
 
+        Note eq = null;
         for (String s : equivalent) {
-            if (!s.contains("#") && s.startsWith(base))
-                return s;
+            if (!s.contains("#") && !s.contains("bb"))
+                eq = new Note(midiNoteNumber, s);
         }
 
-        return "";
+        return eq;
     }
 
-    public static String getSharpEquivalent(int midiNoteNumber, String base) {
+    public static Note getFlatishEquivalent(int midiNoteNumber) {
         List<String> equivalent = equivalents.get(midiNoteNumber % 12);
 
         for (String s : equivalent) {
-            if (!s.contains("b") && s.startsWith(base))
-                return s;
+            if (!s.contains("#"))
+                return new Note(midiNoteNumber, s);
         }
 
-        return "";
+        return null;
+    }
+
+    public static Note getSingleSharpEquivalent(int midiNoteNumber) {
+        List<String> equivalent = equivalents.get(midiNoteNumber % 12);
+
+        for (String s : equivalent) {
+            if (!s.contains("b") && !s.contains("##"))
+                return new Note(midiNoteNumber, s);
+        }
+
+        return null;
+    }
+
+    public static Note getSharpishEquivalent(int midiNoteNumber) {
+        List<String> equivalent = equivalents.get(midiNoteNumber % 12);
+
+        for (String s : equivalent) {
+            if (!s.contains("b"))
+                return new Note(midiNoteNumber, s);
+        }
+
+        return null;
+    }
+
+    public static String getCircleLabel(int midiNoteNumber) {
+        if (Math.abs(12 / 2 - midiNoteNumber / 7) <= 1)
+            return String.format("%s/%s", getSingleSharpEquivalent(midiNoteNumber), getSingleFlatEquivalent(midiNoteNumber));
+        else if (12 / 2 - midiNoteNumber / 7 < 0)
+            return String.format("%s", getSingleFlatEquivalent(midiNoteNumber));
+        else
+            return String.format("%s", getSingleSharpEquivalent(midiNoteNumber));
     }
 
     public static Scale getMajorScale(int midiNoteNumber) {
