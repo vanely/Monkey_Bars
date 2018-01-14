@@ -3,11 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Scale extends ArrayList<Note> {
-    Scale() {
+    public Scale() {
 
     }
 
-    Scale(List<Note> l) {
+    public Scale(String[] l) {
+        for (String note: l) {
+            this.add(new Note(note));
+        }
+    }
+
+    public Scale(List<Note> l) {
         this.addAll(l);
     }
 
@@ -27,6 +33,33 @@ public class Scale extends ArrayList<Note> {
         return string.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+
+        if (!(o instanceof Scale))
+            return false;
+
+        Scale castedScale = (Scale) o;
+        if (castedScale.size() != this.size())
+            return false;
+
+        for ( Note n: castedScale) {
+            if (!this.hasEquivalentNote(n))
+                return false;
+        }
+
+        return true;
+    }
+
+    public boolean hasEquivalentNote(Note n) {
+        for (Note t: this) {
+            if (t.getNoteNameWithoutOctave().equals(n.getNoteNameWithoutOctave()))
+                return true;
+        }
+        return false;
+    }
 
     @Override
     public String toString() {
