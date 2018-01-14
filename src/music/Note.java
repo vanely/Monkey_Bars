@@ -8,7 +8,7 @@ public class Note {
     int octave;
     int midiNoteNumber;
 
-    Note(int midiNoteNumber, String pitch) {
+    public Note(int midiNoteNumber, String pitch) {
         this.midiNoteNumber = midiNoteNumber;
         if (Pitch.pitchStringIsValid(pitch))
             this.pitch = Pitch.pitchFromString(pitch);
@@ -18,7 +18,7 @@ public class Note {
 
     }
 
-    Note(String note) {
+    public Note(String note) {
         if (Note.hasValidName(note)){
             String[] tokens = note.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
             this.pitch = Pitch.pitchFromString(tokens[0]);
