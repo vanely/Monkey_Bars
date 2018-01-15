@@ -50,6 +50,15 @@ public class Note {
                 return 0;
         }
     }
+    public static String ds(String note) {
+        return String.format("%s%s", note, Music.DOUBLE_SHARP);
+    }
+
+    public static String db(String note) {
+        return String.format("%s%s", note, Music.DOUBLE_FLAT);
+
+    }
+    
     public String getNoteNameWithOctave() {
         return String.format("%s%d", pitch, octave);
     }
