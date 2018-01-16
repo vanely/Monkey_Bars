@@ -1,3 +1,5 @@
+package music;
+
 import java.util.Scanner;
 
 
@@ -6,17 +8,17 @@ public class Note {
     int octave;
     int midiNoteNumber;
 
-    Note(int midiNoteNumber, String pitch) {
+    public Note(int midiNoteNumber, String pitch) {
         this.midiNoteNumber = midiNoteNumber;
         if (Pitch.pitchStringIsValid(pitch))
             this.pitch = Pitch.pitchFromString(pitch);
         else
-            System.out.println("Pitch used to create note is invalid!");
+            System.out.println("music.Pitch used to create note is invalid!");
         this.octave = midiNoteNumber / 12 - 1;
 
     }
 
-    Note(String note) {
+    public Note(String note) {
         if (Note.hasValidName(note)){
             String[] tokens = note.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
             this.pitch = Pitch.pitchFromString(tokens[0]);
@@ -48,6 +50,15 @@ public class Note {
                 return 0;
         }
     }
+    public static String ds(String note) {
+        return String.format("%s%s", note, Music.DOUBLE_SHARP);
+    }
+
+    public static String db(String note) {
+        return String.format("%s%s", note, Music.DOUBLE_FLAT);
+
+    }
+    
     public String getNoteNameWithOctave() {
         return String.format("%s%d", pitch, octave);
     }

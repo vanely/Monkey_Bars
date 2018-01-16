@@ -1,3 +1,5 @@
+package music;
+
 import javax.sound.midi.*;
 import java.util.Map;
 import java.util.Scanner;
@@ -116,9 +118,9 @@ public class Music {
             response = input.next();
             if (!response.equals("Q")) {
                 if (Pitch.pitchStringIsValid(response))
-                    System.out.printf("Pitch entered is valid and recognized as %s!\n\n", Pitch.pitchFromString(response));
+                    System.out.printf("music.Pitch entered is valid and recognized as %s!\n\n", Pitch.pitchFromString(response));
                 else {
-                    System.out.println("Pitch entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ##!");
+                    System.out.println("music.Pitch entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ##!");
                     System.out.println("e.g. Ab, C#, Fbb, D##, C");
                 }
             }
@@ -129,9 +131,9 @@ public class Music {
             response = input.next();
             if (!response.equals("Q")) {
                 if (Note.hasValidName(response))
-                    System.out.printf("Note entered is valid and recognized as %s!\n\n", new Note(response));
+                    System.out.printf("music.Note entered is valid and recognized as %s!\n\n", new Note(response));
                 else {
-                    System.out.println("Note entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ## and a number if desired!");
+                    System.out.println("music.Note entered is not valid and cannot be recognized. Use the letters A-G with b, bb, # or ## and a number if desired!");
                     System.out.println("e.g. Ab3, C#5, Fbb8, D##2, C, G9");
                 }
             }
@@ -144,8 +146,8 @@ public class Music {
         int midiNoteNumber = input.nextInt();
 */
 
-//        Pitch pitch = Pitch.C;
-//        System.out.println(Pitch.valueOf("Cs"));
+//        music.Pitch pitch = music.Pitch.C;
+//        System.out.println(music.Pitch.valueOf("Cs"));
 
 //        channel.noteOn(midiNoteNumber, 127);
 

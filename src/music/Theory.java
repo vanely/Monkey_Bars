@@ -1,3 +1,5 @@
+package music;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -193,7 +195,7 @@ public class Theory {
         int[] major = scalesList.get("Major");
 
         for (int i = 0; i < major.length; i++) {
-//            majorScale.add(new Note(midiNoteNumber + major[i]));
+//            majorScale.add(new music.Note(midiNoteNumber + major[i]));
         }
 
         return majorScale;
@@ -205,7 +207,7 @@ public class Theory {
         int[] naturalMinor = scalesList.get("NaturalMinor");
 
         for (int i = 0; i < naturalMinor.length; i++) {
-//            naturalMinorScale.add(new Note(midiNoteNumber + naturalMinor[i]));
+//            naturalMinorScale.add(new music.Note(midiNoteNumber + naturalMinor[i]));
         }
 
         return naturalMinorScale;
